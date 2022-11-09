@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
+use App\Mail\ApplicationCreated;
 use App\Models\Aplication;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AplicationController extends Controller
 {
@@ -31,6 +35,8 @@ class AplicationController extends Controller
             'message' => $request->message,
             'file_url' => $path ?? null,
         ]);
+
+        dispatch(new SendEmailJob($application));
 
         return redirect()->back();
     }
