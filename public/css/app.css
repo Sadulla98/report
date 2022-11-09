@@ -724,8 +724,14 @@ select {
 .-mr-2 {
   margin-right: -0.5rem;
 }
+.mr-3 {
+  margin-right: 0.75rem;
+}
 .block {
   display: block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -992,6 +998,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
 .bg-\[url\(\'https\:\/\/i\.pravatar\.cc\/32\'\)\] {
   background-image: url('https://i.pravatar.cc/32');
 }
@@ -1024,6 +1034,9 @@ select {
 }
 .p-2 {
   padding: 0.5rem;
+}
+.p-4 {
+  padding: 1rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1232,6 +1245,10 @@ select {
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
+}
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
