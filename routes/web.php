@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AplicationController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/', [MainController::class, 'main'])->name('main');
+    Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
 
-Route::resource('applications',AplicationController::class);
+//    Route::get('applications/{application}/answer', [AnswerController::class, 'create'])->name('answers.create');
+//    Route::post('applications/{application}/answer', [AnswerController::class, 'store'])->name('answers.store');
+
+    Route::resource('applications', AplicationController::class);
+});
 
 require __DIR__.'/auth.php';
