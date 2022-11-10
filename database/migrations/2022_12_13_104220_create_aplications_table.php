@@ -19,6 +19,7 @@ class CreateAplicationsTable extends Migration
             $table->text('subject');
             $table->text('message');
             $table->text('file_url')->nullable();
+            $table->text('file_name')->nullable();
             $table->timestamps();
         });
     }

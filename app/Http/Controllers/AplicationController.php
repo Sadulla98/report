@@ -16,17 +16,16 @@ class AplicationController extends Controller
     public function store(ApplicationRequest $request)
     {
 
-        if ($this->checkDate()){
-            return redirect()->back()->with('error', 'You can create only 1 application a day');
-        }
+//        if ($this->checkDate()){
+//            return redirect()->back()->with('error', 'You can create only 1 application a day');
+//        }
 
         if ($request->hasFile('file')){
             $name = $request->file('file')->getClientOriginalName();
-
             $path = $request->file('file')->storeAs(
                 'files',
                 $name,
-                'public'
+                'local'
             );
         }
 
@@ -35,6 +34,7 @@ class AplicationController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
             'file_url' => $path ?? null,
+            'file_name' => $name,
         ]);
 
         dispatch(new SendEmailJob($application));
