@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AplicationController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AnwerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [MainController::class, 'main'])->name('main');
     Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
 
-//    Route::get('applications/{application}/answer', [AnswerController::class, 'create'])->name('answers.create');
-//    Route::post('applications/{application}/answer', [AnswerController::class, 'store'])->name('answers.store');
+    Route::get('aplications/{aplication}/answer', [AnswerController::class, 'create'])->name('answers.create');
+    Route::post('aplications/{aplication}/answer', [AnswerController::class, 'store'])->name('answers.store');
 
     Route::resource('applications', AplicationController::class);
 });

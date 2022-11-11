@@ -34,7 +34,7 @@ class AplicationController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
             'file_url' => $path ?? null,
-            'file_name' => $name,
+            'file_name' => $name ?? null,
         ]);
 
         dispatch(new SendEmailJob($application));
