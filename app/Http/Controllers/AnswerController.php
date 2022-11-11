@@ -15,16 +15,16 @@ class AnswerController extends Controller
 
     public function create(Aplication $aplication)
     {
-//        if (! Gate::allows('update-post', auth()->user())) {
+//        if (! Gate::allows('answer-application', auth()->user())) {
 //            abort(403);
 //        }
-        
+
         return view('answers.create', ['aplication' => $aplication]);
     }
 
     public function store(Aplication $aplication, Request $request)
     {
-//        if (! Gate::allows('update-post', auth()->user())) {
+//        if (! Gate::allows('answer-application', auth()->user())) {
 //            abort(403);
 //        }
 

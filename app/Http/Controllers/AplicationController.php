@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Mail;
 
 class AplicationController extends Controller
 {
+
+    public function index()
+    {
+        $applications = auth()->user()->applications()->latest()->paginate(10);
+        return view('applications.index')->with([
+            'applications' => $applications,
+        ]);
+    }
+
     public function store(ApplicationRequest $request)
     {
 
