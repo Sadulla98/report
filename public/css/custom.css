@@ -1,0 +1,7 @@
+.file_btn{
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

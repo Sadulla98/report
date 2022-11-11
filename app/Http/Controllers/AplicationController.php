@@ -13,20 +13,28 @@ use Illuminate\Support\Facades\Mail;
 
 class AplicationController extends Controller
 {
+
+    public function index()
+    {
+        $applications = auth()->user()->applications()->latest()->paginate(10);
+        return view('applications.index')->with([
+            'applications' => $applications,
+        ]);
+    }
+
     public function store(ApplicationRequest $request)
     {
 
-        if ($this->checkDate()){
-            return redirect()->back()->with('error', 'You can create only 1 application a day');
-        }
+//        if ($this->checkDate()){
+//            return redirect()->back()->with('error', 'You can create only 1 application a day');
+//        }
 
         if ($request->hasFile('file')){
             $name = $request->file('file')->getClientOriginalName();
-
             $path = $request->file('file')->storeAs(
                 'files',
                 $name,
-                'public'
+                'local'
             );
         }
 
@@ -35,6 +43,7 @@ class AplicationController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
             'file_url' => $path ?? null,
+            'file_name' => $name ?? null,
         ]);
 
         dispatch(new SendEmailJob($application));
