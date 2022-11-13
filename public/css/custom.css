@@ -5,3 +5,17 @@
     flex-direction: column;
     align-items: center;
 }
+.applications{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.applications .hidden{
+    margin-top: 20px;
+}
+.applications .hidden p{
+    margin-right: 10px;
+}
+.applications .status{
+    color: #fff;
+}

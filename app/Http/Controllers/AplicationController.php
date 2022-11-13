@@ -48,7 +48,7 @@ class AplicationController extends Controller
 
         dispatch(new SendEmailJob($application));
 
-        return redirect()->back();
+        return redirect()->back()->with('success', __('locale.successfully'));
     }
 
     protected function checkDate()
