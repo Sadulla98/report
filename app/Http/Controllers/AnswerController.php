@@ -29,11 +29,12 @@ class AnswerController extends Controller
 //        }
 
         $request->validate(['body' => 'required']);
-
+        $aplication->status = 1;
+        $aplication->save();
         $aplication->answer()->create([
             'body' => $request->body,
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', __('locale.successfully-answer'));
     }
 }

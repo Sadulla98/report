@@ -13,18 +13,25 @@
                     @if(!empty($applications))
                         <span class="text-blue-500 font-bold text-xl">My Applications</span>
                         <!-- This is a Manager -->
-                        <div class='mt-5'>
+                        <div class='mt-5 applications'>
 
+                            @php $i=0; @endphp
                             @foreach($applications as $application)
-                                <div class="rounded-xl border p-5 shadow-md w-9/12 bg-white mt-5">
+                                @php $i++; @endphp
+                                <div class="rounded-xl border p-5 shadow-md w-10/12 bg-white mt-5">
                                     <div class="flex w-full items-center justify-between border-b pb-3">
                                         <div class="flex items-center space-x-3">
                                             <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]"></div>
                                             <div class="text-lg font-bold text-slate-700">{{ $application->user->name }}</div>
                                         </div>
                                         <div class="flex items-center space-x-8">
-                                            <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold"># {{ $application->id }}</button>
-                                            <div class="text-xs text-neutral-500">{{ $application->created_date }}</div>
+
+                                            <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold status {{ ($application->status == 0) ? 'bg-red-500' : 'bg-green-500' }}">
+                                                {{ ($application->status == 0) ? 'Progress' : 'Done'}}
+                                            </button>
+
+                                            <button class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold"># {{ $i }}</button>
+                                            <div class="text-xs text-neutral-500">{{ $application->created_at }}</div>
                                         </div>
                                     </div>
 
@@ -59,11 +66,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(!empty($application->answer->body) )
                                     <div>
                                         <hr class="border">
                                         <h3 class="text-xs font-bold mt-2 text-indigo-600">Answer:</h3>
                                         <p>{{ $application->answer->body }}</p>
                                     </div>
+                                    @else
+
+                                    @endif
                                 </div>
                             @endforeach
 

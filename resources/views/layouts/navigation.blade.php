@@ -17,7 +17,7 @@
                     </x-nav-link>
                     @if(auth()->user()->role->name == 'client')
                         <x-nav-link :href="route('applications.index')" :active="request()->routeIs('applications.index')">
-                            {{ __('Applications') }}
+                            {{ __('My Applications') }}
                         </x-nav-link>
                     @endif
                 </div>
