@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NoticeEvent;
 use App\Http\Requests\ApplicationRequest;
 use App\Jobs\SendEmailJob;
 use App\Mail\ApplicationCreated;
@@ -45,6 +46,8 @@ class AplicationController extends Controller
             'file_url' => $path ?? null,
             'file_name' => $name ?? null,
         ]);
+
+        NoticeEvent::dispatch('Application created');
 
         dispatch(new SendEmailJob($application));
 

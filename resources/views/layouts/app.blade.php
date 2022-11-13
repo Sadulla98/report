@@ -34,6 +34,8 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
         <script src="{{asset('js/app.js')}}"></script>
         <script src="{{asset('js/custom.js')}}"></script>
 
@@ -52,6 +54,19 @@
                 if(sessionError){
                     toastr.success(sessionError)
                 }
+
+                // Enable pusher logging - don't include this in production
+                Pusher.logToConsole = true;
+
+                var pusher = new Pusher('e34714d50c0b6a19a70c', {
+                    cluster: 'ap2',
+                    forceTLS: false,
+                });
+
+                var channel = pusher.subscribe('task');
+                channel.bind('notice', function(data) {
+                    alert(JSON.stringify(data));
+                });
 
             });
         </script>
